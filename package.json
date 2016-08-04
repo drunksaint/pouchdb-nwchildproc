@@ -1,5 +1,7 @@
 {
   "name": "pouchnwchild",
-  "main": "index.html"
+  "main": "index.html",
+  "dependencies": {
+    "pouchdb": "^5.4.5"
+  }
 }
-
