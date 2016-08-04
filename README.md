@@ -7,4 +7,4 @@ instructions to setup:
 
 - download the SDK version of the nwjs build from https://dl.nwjs.io/v0.15.4/ for your platform
 
-- run the app: $ <path_to_extracted_nw> <path_to_app_directory>
+- run the app: <path_to_extracted_nw> <path_to_app_directory>
