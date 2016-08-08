@@ -4,6 +4,10 @@
     <title>Pouch Test</title>
     <script type="text/javascript">
         var childprocess = require('child_process').fork('./cp.js');
+        childprocess.on('message', function (result) {
+            console.log('message from child process: ', result);
+        });
+        childprocess.send('hi');
     </script>
   </head>
   <body>
