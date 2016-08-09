@@ -8,6 +8,7 @@ pdb.info().then(function(r){
     process.send(r);
 }, function(e){
 	console.log('error while getting info: ', e);
+	process.send('error in child process while getting pouchdb info.');
 	process.send(e);
 });
 process.on('message', function (m) {
