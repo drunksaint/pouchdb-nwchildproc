@@ -1,16 +1,35 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Pouch Test</title>
-    <script type="text/javascript">
-        var childprocess = require('child_process').fork('./cp.js');
-        childprocess.on('message', function (result) {
-            console.log('message from child process: ', result);
-        });
-        childprocess.send('hi');
-    </script>
-  </head>
-  <body>
-    <h1>pouchdb websql test in child process</h1>
-  </body>
+    <head>
+        <title>Pouch Test</title>
+        <script type="text/javascript">
+            nw.Window.get().showDevTools();
+            var childprocess = require('child_process').fork('./cp.js', [], {silent: true});
+
+            childprocess.on('error', function (e) {
+                console.log('child process error ' + e);
+            });
+            childprocess.on('close', function (code) {
+                console.log('child process exited with code ' + code);
+            });
+            childprocess.on('message', function (result) {
+                console.log('message from child process: ', result);
+            });
+            childprocess.stdout.on('data', function (d) {
+                console.log('child process stdout: ', d);
+            });
+            childprocess.stderr.on('data', function (d) {
+                console.log('child process stderr: ', d);
+                var x="";
+                for (var i = 0; i < d.length; i++) {
+                    x+=String.fromCharCode(d[i]);
+                }
+                console.log(x);
+            });
+            childprocess.send('hi');
+        </script>
+    </head>
+    <body>
+        <h1>pouchdb websql test in child process</h1>
+    </body>
 </html>
